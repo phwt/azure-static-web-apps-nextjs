@@ -13,7 +13,7 @@ export const arraysIntersection = <T>(arrays: T[][]) =>
  * Get current page's path - intended to be used in getStaticProps
  * @returns current page's path
  */
-export const getCurrentPath = () => {
+export const getCurrentPath = (filename: string) => {
   const removeExtension = (path: string) =>
     path.substring(0, path.lastIndexOf(".")) || path;
 
@@ -21,7 +21,7 @@ export const getCurrentPath = () => {
     path.endsWith("/") ? path : `${path}/`;
 
   const nextPath = "/.next/server/pages";
-  const currentPath = __filename.substring(
+  const currentPath = filename.substring(
     process.cwd().length + nextPath.length
   );
 

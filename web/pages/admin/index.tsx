@@ -4,7 +4,7 @@ import { getStaticPropsAllowedRoles } from "../../modules/Auth";
 export const getStaticProps = () => {
   return {
     props: {
-      ...getStaticPropsAllowedRoles(),
+      ...getStaticPropsAllowedRoles(__filename),
     },
   };
 };
