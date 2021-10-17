@@ -3,8 +3,7 @@ import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import useSWR from "swr";
 import { useMemo } from "react";
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
+import { fetcher } from "../modules/Utils";
 
 const Home = () => {
   const { data, error } = useSWR("/api/TodoList", fetcher);
