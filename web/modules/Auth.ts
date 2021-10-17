@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { fetcher } from "./Utils";
+import { fetcher, arrayIntersection } from "./Utils";
 
 export const fetchMe = () => {
   const { data, error } = useSWR(`/.auth/me`, fetcher);
@@ -9,4 +9,19 @@ export const fetchMe = () => {
     loading: !error && !data,
     error,
   };
+};
+
+export const checkAllowedRoles = (
+  clientPrincipal: {
+    userId: string;
+    userRoles: string[];
+    identityProvider: string;
+    userDetails: string;
+  },
+  allowedRoles: string[]
+): boolean => {
+  const rolesAllowed =
+    clientPrincipal &&
+    arrayIntersection(allowedRoles, clientPrincipal.userRoles).length;
+  return !!rolesAllowed;
 };

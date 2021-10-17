@@ -1,7 +1,16 @@
 import { useMemo } from "react";
+import RolesRestriction from "../../components/RolesRestriction";
 import { fetchMe } from "../../modules/Auth";
 
-const AdminIndex = () => {
+export const getStaticProps = () => {
+  return {
+    props: {
+      allowedRoles: ["administrator"], // TODO: Read from staticwebapp.config.json
+    },
+  };
+};
+
+const AdminIndex = ({ allowedRoles, cwd }) => {
   const { user, loading, error } = fetchMe();
 
   const userSection = useMemo(() => {
@@ -17,10 +26,10 @@ const AdminIndex = () => {
   }, [user, loading, error]);
 
   return (
-    <>
+    <RolesRestriction allowedRoles={allowedRoles}>
       <h1>Manage Todo List</h1>
       {userSection}
-    </>
+    </RolesRestriction>
   );
 };
 
