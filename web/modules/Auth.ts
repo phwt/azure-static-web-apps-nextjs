@@ -36,13 +36,18 @@ export const checkAllowedRoles = (
 export const getPageAllowedRoles = () => {
   const currentPath = getCurrentPath();
 
-  const routesAllowedRoles = swaconfig.routes
-    .filter((route) => match(route.route, currentPath).matches)
-    .map((route) => route.allowedRoles);
+  const relatedRoutes = swaconfig.routes.filter(
+    (route) => match(route.route, currentPath).matches
+  );
 
-  const allowedRoles = arraysIntersection(routesAllowedRoles);
-
-  return allowedRoles;
+  if (relatedRoutes.length) {
+    return {
+      roles: arraysIntersection(
+        relatedRoutes.map((route) => route.allowedRoles)
+      ),
+    };
+  }
+  return { any: true }; // Doesn't match any routes - allow anonymous access or any roles
 };
 
 export const getStaticPropsAllowedRoles = () => ({

@@ -4,6 +4,16 @@ import styles from "../styles/Home.module.css";
 import useSWR from "swr";
 import { useMemo } from "react";
 import { fetcher } from "../modules/Utils";
+import withAuthorization from "../containers/withAuthorization";
+import { getStaticPropsAllowedRoles } from "../modules/Auth";
+
+export const getStaticProps = () => {
+  return {
+    props: {
+      ...getStaticPropsAllowedRoles(),
+    },
+  };
+};
 
 const Home = () => {
   const { data, error } = useSWR("/api/TodoList", fetcher);
@@ -56,4 +66,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withAuthorization(Home);
