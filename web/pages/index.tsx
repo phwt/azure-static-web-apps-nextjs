@@ -1,8 +1,29 @@
 import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
+import useSWR from "swr";
+import { useMemo } from "react";
 
-export default function Home() {
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+const Home = () => {
+  const { data, error } = useSWR("/api/TodoList", fetcher);
+
+  const todoSection = useMemo(() => {
+    if (error) return <div>Error fetching todo!</div>;
+    if (!data) return <div>Loading...</div>;
+
+    return (
+      <ul className={styles["no-bullets"]}>
+        {data.map((todo) => (
+          <li>
+            <input type="checkbox" checked={todo.done} /> {todo.description}
+          </li>
+        ))}
+      </ul>
+    );
+  }, [data, error]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -26,7 +47,14 @@ export default function Home() {
             </span>
           </Link>
         </div>
+
+        <footer className={styles.footer}>
+          <h1>Todo</h1>
+          {todoSection}
+        </footer>
       </main>
     </div>
   );
-}
+};
+
+export default Home;
