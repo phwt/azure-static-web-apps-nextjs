@@ -1,16 +1,16 @@
 import { useMemo } from "react";
 import RolesRestriction from "../../components/RolesRestriction";
-import { fetchMe } from "../../modules/Auth";
+import { fetchMe, getPageAllowedRoles } from "../../modules/Auth";
 
 export const getStaticProps = () => {
   return {
     props: {
-      allowedRoles: ["administrator"], // TODO: Read from staticwebapp.config.json
+      allowedRoles: getPageAllowedRoles(),
     },
   };
 };
 
-const AdminIndex = ({ allowedRoles, cwd }) => {
+const AdminIndex = ({ allowedRoles }) => {
   const { user, loading, error } = fetchMe();
 
   const userSection = useMemo(() => {

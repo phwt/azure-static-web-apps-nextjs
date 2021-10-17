@@ -5,7 +5,7 @@
       "allowedRoles": ["administrator"]
     },
     {
-      "route": "/api/admin*",
+      "route": "/api/admin/*",
       "allowedRoles": ["administrator"]
     }
   ]
