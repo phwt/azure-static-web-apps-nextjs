@@ -9,12 +9,13 @@ export const getStaticProps = () => {
   };
 };
 
-const AdminIndex = ({ user }) => {
+const AdminIndex = ({ user, allowedRoles }) => {
   return (
     <>
       <h1>Manage Todo List</h1>
       <h5>Current user:</h5>
       <pre>{JSON.stringify(user, null, 2)}</pre>
+      <pre>{JSON.stringify(allowedRoles)}</pre>
     </>
   );
 };
