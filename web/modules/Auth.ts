@@ -46,7 +46,5 @@ export const getPageAllowedRoles = () => {
 };
 
 export const getStaticPropsAllowedRoles = () => ({
-  props: {
-    allowedRoles: getPageAllowedRoles(),
-  },
+  allowedRoles: getPageAllowedRoles(),
 });

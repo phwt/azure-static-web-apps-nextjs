@@ -2,7 +2,13 @@ import { useMemo } from "react";
 import RolesRestriction from "../../components/RolesRestriction";
 import { fetchMe, getStaticPropsAllowedRoles } from "../../modules/Auth";
 
-export const getStaticProps = getStaticPropsAllowedRoles;
+export const getStaticProps = () => {
+  return {
+    props: {
+      ...getStaticPropsAllowedRoles(),
+    },
+  };
+};
 
 const AdminIndex = ({ allowedRoles }) => {
   const { user, loading, error } = fetchMe();
