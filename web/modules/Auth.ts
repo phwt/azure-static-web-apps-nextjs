@@ -47,8 +47,8 @@ export const checkAllowedRoles = (
  * Read and match routes in staticwebapp.config to get allowedRoles for current page
  * @returns roles allowed to access this page or is anonymous access allowed
  */
-export const getPageAllowedRoles = () => {
-  const currentPath = getCurrentPath();
+export const getPageAllowedRoles = (filename: string) => {
+  const currentPath = getCurrentPath(filename);
 
   const relatedRoutes = swaconfig.routes.filter(
     (route) => match(route.route, currentPath).matches
@@ -67,6 +67,6 @@ export const getPageAllowedRoles = () => {
 /**
  * Use in getStaticProps to ensure that allowedRoles will be returned in props
  */
-export const getStaticPropsAllowedRoles = () => ({
-  allowedRoles: getPageAllowedRoles(),
+export const getStaticPropsAllowedRoles = (filename: string) => ({
+  allowedRoles: getPageAllowedRoles(filename),
 });
