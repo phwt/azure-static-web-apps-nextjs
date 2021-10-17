@@ -44,3 +44,9 @@ export const getPageAllowedRoles = () => {
 
   return allowedRoles;
 };
+
+export const getStaticPropsAllowedRoles = () => ({
+  props: {
+    allowedRoles: getPageAllowedRoles(),
+  },
+});
