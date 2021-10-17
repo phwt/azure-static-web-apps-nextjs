@@ -1,0 +1,22 @@
+{
+  "name": "azure-static-web-apps-react",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "npm run watch:api & npm run dev:swa",
+    "dev:swa": "swa start http://localhost:3000 --run 'cd web && npm run dev' --api-location ./api",
+    "dev:web": "cd web && npm run dev",
+    "dev:api": "cd api && npm run dev",
+    "watch:api": "cd api && npm run watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phwt/azure-static-web-apps-react.git"
+  },
+  "author": "phwt.smwt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phwt/azure-static-web-apps-react/issues"
+  },
+  "homepage": "https://github.com/phwt/azure-static-web-apps-react#readme"
+}
