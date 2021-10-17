@@ -8,6 +8,10 @@ import {
 import swaconfig from "../staticwebapp.config.json";
 import { match } from "node-match-path";
 
+/**
+ * Get current user's clientPrincipal
+ * @returns current user's clientPrincipal
+ */
 export const fetchMe = () => {
   const { data, error } = useSWR(`/.auth/me`, fetcher);
 
@@ -18,6 +22,12 @@ export const fetchMe = () => {
   };
 };
 
+/**
+ * Check if user has required roles specified in allowedRoles
+ * @param clientPrincipal user data returned from /.auth/me
+ * @param allowedRoles
+ * @returns does roles of user defined in clientPrincipal intersect with allowedRoles
+ */
 export const checkAllowedRoles = (
   clientPrincipal: {
     userId: string;
@@ -33,6 +43,10 @@ export const checkAllowedRoles = (
   return !!rolesAllowed;
 };
 
+/**
+ * Read and match routes in staticwebapp.config to get allowedRoles for current page
+ * @returns roles allowed to access this page or is anonymous access allowed
+ */
 export const getPageAllowedRoles = () => {
   const currentPath = getCurrentPath();
 
@@ -50,6 +64,9 @@ export const getPageAllowedRoles = () => {
   return { any: true }; // Doesn't match any routes - allow anonymous access or any roles
 };
 
+/**
+ * Use in getStaticProps to ensure that allowedRoles will be returned in props
+ */
 export const getStaticPropsAllowedRoles = () => ({
   allowedRoles: getPageAllowedRoles(),
 });

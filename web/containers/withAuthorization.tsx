@@ -2,6 +2,10 @@ import { useRouter } from "next/dist/client/router";
 import { useEffect } from "react";
 import { fetchMe, checkAllowedRoles } from "../modules/Auth";
 
+/**
+ * Check for authorization before allowing access - use as HOC to wrap page component
+ * In order to use getStaticProps must be present in the page and returning allowedRoles as props
+ */
 const withAuthorization = (Component) => {
   const RolesRestriction = (props) => {
     const { allowedRoles } = props;
