@@ -25,8 +25,9 @@ const Home = () => {
     return (
       <ul className={styles["no-bullets"]}>
         {data.map((todo) => (
-          <li>
-            <input type="checkbox" checked={todo.done} /> {todo.description}
+          <li key={todo.description}>
+            <input type="checkbox" checked={todo.done} readOnly />{" "}
+            {todo.description}
           </li>
         ))}
       </ul>
