@@ -1,5 +1,5 @@
 {
-  "name": "azure-static-web-apps-react",
+  "name": "azure-static-web-apps-nextjs",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/phwt/azure-static-web-apps-react.git"
+    "url": "git+https://github.com/phwt/azure-static-web-apps-nextjs.git"
   },
   "author": "phwt.smwt",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/phwt/azure-static-web-apps-react/issues"
+    "url": "https://github.com/phwt/azure-static-web-apps-nextjs/issues"
   },
-  "homepage": "https://github.com/phwt/azure-static-web-apps-react#readme"
+  "homepage": "https://github.com/phwt/azure-static-web-apps-nextjs#readme"
 }
