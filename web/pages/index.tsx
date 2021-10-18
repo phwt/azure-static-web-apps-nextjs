@@ -23,7 +23,7 @@ const Home = () => {
     return (
       <ul className="no-bullets">
         {data.map((todo) => (
-          <li key={todo.description}>
+          <li key={todo.id}>
             <input type="checkbox" checked={todo.done} readOnly />{" "}
             {todo.description}
           </li>
